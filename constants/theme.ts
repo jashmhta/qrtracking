@@ -1,6 +1,7 @@
 /**
  * Theme constants for Palitana Yatra app
  * Colors inspired by the app logo - saffron orange gradient with gold accents
+ * Neutrals based on Zinc scale for a modern, clean look.
  */
 
 import { Platform } from "react-native";
@@ -10,6 +11,22 @@ const saffronOrange = "#F5841F"; // Main saffron orange from logo
 const saffronDark = "#D96B0C"; // Darker saffron for depth
 const saffronLight = "#FF9F45"; // Lighter saffron for highlights
 const goldenAccent = "#D4A84B"; // Gold accent from temple illustration
+const deepRed = "#991B1B"; // Spiritual red (Kumkum)
+
+// Zinc Scale for Neutrals
+const zinc = {
+  50: "#FAFAFA",
+  100: "#F4F4F5",
+  200: "#E4E4E7",
+  300: "#D4D4D8",
+  400: "#A1A1AA",
+  500: "#71717A",
+  600: "#52525B",
+  700: "#3F3F46",
+  800: "#27272A",
+  900: "#18181B",
+  950: "#09090B",
+};
 
 export type ColorScheme = 'light' | 'dark';
 export type SchemeColors = typeof Colors.light;
@@ -17,104 +34,148 @@ export type ThemeColorPalette = typeof Colors.light;
 
 export const Colors = {
   light: {
-    text: "#1A1A1A",
-    textSecondary: "#666666",
-    textTertiary: "#999999",
+    text: zinc[900],
+    textSecondary: zinc[600],
+    textTertiary: zinc[400],
+    textInverse: "#FFFFFF",
+    
     background: "#FFFFFF",
-    backgroundSecondary: "#F8F9FA",
+    backgroundSecondary: zinc[50],
+    backgroundTertiary: zinc[100],
+    
     tint: saffronOrange,
     tintDark: saffronDark,
     tintLight: saffronLight,
-    // Primary color aliases (for backward compatibility)
+    
+    // Primary Brand Colors
     primary: saffronOrange,
-    primaryLight: "#FFF3E6",
-    icon: "#687076",
-    tabIconDefault: "#9CA3AF",
+    primaryLight: "#FFF3E6", // Very light orange wash
+    primaryDark: saffronDark,
+    
+    secondary: zinc[800],
+    secondaryLight: zinc[200],
+    
+    accent: goldenAccent,
+    accentLight: "#FDF6E3",
+    
+    icon: zinc[500],
+    tabIconDefault: zinc[400],
     tabIconSelected: saffronOrange,
-    border: "#E5E7EB",
-    borderLight: "#F3F4F6",
+    
+    border: zinc[200],
+    borderLight: zinc[100],
+    borderDark: zinc[300],
+    
     card: "#FFFFFF",
     cardElevated: "#FFFFFF",
-    success: "#22C55E",
-    successLight: "#DCFCE7",
-    warning: "#F59E0B",
-    warningLight: "#FEF3C7",
-    error: "#EF4444",
-    errorLight: "#FEE2E2",
-    info: "#3B82F6",
-    infoLight: "#DBEAFE",
+    
+    success: "#10B981", // Emerald 500
+    successLight: "#D1FAE5", // Emerald 100
+    successDark: "#047857",
+    
+    warning: "#F59E0B", // Amber 500
+    warningLight: "#FEF3C7", // Amber 100
+    
+    error: "#EF4444", // Red 500
+    errorLight: "#FEE2E2", // Red 100
+    
+    info: "#3B82F6", // Blue 500
+    infoLight: "#DBEAFE", // Blue 100
+    
     // Gradient colors for headers (matching logo gradient)
     gradientStart: "#F5841F", // Saffron orange
     gradientEnd: "#FFAB40", // Golden orange
     gradientPrimaryStart: "#F5841F",
     gradientPrimaryEnd: "#FFAB40",
+    
     // Glass effect colors
-    glass: "rgba(255, 255, 255, 0.1)",
-    glassOverlay: "rgba(255, 255, 255, 0.05)",
-    // Pending/in-progress color
-    pending: "#F59E0B",
+    glass: "rgba(255, 255, 255, 0.7)",
+    glassOverlay: "rgba(255, 255, 255, 0.4)",
+    glassBorder: "rgba(255, 255, 255, 0.5)",
+    
     // Status colors
-    completed: "#22C55E",
-    completedLight: "#DCFCE7",
+    completed: "#10B981",
+    completedLight: "#D1FAE5",
     inProgress: saffronOrange,
     inProgressLight: "#FFF3E6",
-    notStarted: "#9CA3AF",
-    notStartedLight: "#F3F4F6",
-    // Golden accent for special elements
-    golden: goldenAccent,
-    goldenLight: "#F5E6C8",
-    // Glass effect border
-    glassBorder: "rgba(255, 255, 255, 0.2)",
+    notStarted: zinc[400],
+    notStartedLight: zinc[100],
+    
+    // Spiritual Accents
+    kumkum: deepRed,
+    gold: goldenAccent,
   },
   dark: {
-    text: "#F9FAFB",
-    textSecondary: "#D1D5DB",
-    textTertiary: "#9CA3AF",
-    background: "#111827",
-    backgroundSecondary: "#1F2937",
+    text: zinc[50],
+    textSecondary: zinc[400],
+    textTertiary: zinc[600],
+    textInverse: zinc[900],
+    
+    background: zinc[950],
+    backgroundSecondary: zinc[900],
+    backgroundTertiary: zinc[800],
+    
     tint: saffronLight,
     tintDark: saffronOrange,
     tintLight: "#FFB366",
-    // Primary color aliases (for backward compatibility)
+    
+    // Primary Brand Colors
     primary: saffronLight,
     primaryLight: "#3D2A1A",
-    icon: "#9BA1A6",
-    tabIconDefault: "#6B7280",
+    primaryDark: saffronDark,
+    
+    secondary: zinc[200],
+    secondaryLight: zinc[800],
+    
+    accent: goldenAccent,
+    accentLight: "#3D3520",
+    
+    icon: zinc[400],
+    tabIconDefault: zinc[600],
     tabIconSelected: saffronLight,
-    border: "#374151",
-    borderLight: "#1F2937",
-    card: "#1F2937",
-    cardElevated: "#374151",
-    success: "#4ADE80",
-    successLight: "#14532D",
-    warning: "#FBBF24",
-    warningLight: "#78350F",
-    error: "#F87171",
-    errorLight: "#7F1D1D",
-    info: "#60A5FA",
-    infoLight: "#1E3A5F",
+    
+    border: zinc[800],
+    borderLight: zinc[900],
+    borderDark: zinc[700],
+    
+    card: zinc[900],
+    cardElevated: zinc[800],
+    
+    success: "#34D399", // Emerald 400
+    successLight: "#064E3B", // Emerald 900
+    successDark: "#022C22",
+    
+    warning: "#FBBF24", // Amber 400
+    warningLight: "#78350F", // Amber 900
+    
+    error: "#F87171", // Red 400
+    errorLight: "#7F1D1D", // Red 900
+    
+    info: "#60A5FA", // Blue 400
+    infoLight: "#1E3A5F", // Blue 900
+    
     // Gradient colors for headers
     gradientStart: "#D96B0C",
     gradientEnd: "#F5841F",
     gradientPrimaryStart: "#D96B0C",
     gradientPrimaryEnd: "#F5841F",
+    
     // Glass effect colors
-    glass: "rgba(0, 0, 0, 0.3)",
-    glassOverlay: "rgba(0, 0, 0, 0.2)",
-    // Pending/in-progress color
-    pending: "#FBBF24",
-    // Status colors
-    completed: "#4ADE80",
-    completedLight: "#14532D",
-    inProgress: saffronLight,
-    inProgressLight: "#78350F",
-    notStarted: "#6B7280",
-    notStartedLight: "#1F2937",
-    // Golden accent
-    golden: goldenAccent,
-    goldenLight: "#3D3520",
-    // Glass effect border
+    glass: "rgba(24, 24, 27, 0.6)", // Zinc 900 with opacity
+    glassOverlay: "rgba(24, 24, 27, 0.4)",
     glassBorder: "rgba(255, 255, 255, 0.1)",
+    
+    // Status colors
+    completed: "#34D399",
+    completedLight: "#064E3B",
+    inProgress: saffronLight,
+    inProgressLight: "#451A03",
+    notStarted: zinc[600],
+    notStartedLight: zinc[900],
+    
+    // Spiritual Accents
+    kumkum: "#EF4444",
+    gold: goldenAccent,
   },
 };
 
@@ -132,8 +193,8 @@ export const Fonts = Platform.select({
     mono: "monospace",
   },
   web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    serif: "Georgia, 'Times New Roman', serif",
+    sans: "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    serif: "Merriweather, Georgia, 'Times New Roman', serif",
     rounded:
       "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
@@ -144,49 +205,55 @@ export const Spacing = {
   xs: 4,
   sm: 8,
   base: 12,
-  md: 12,
-  lg: 16,
-  xl: 20,
-  "2xl": 24,
-  "3xl": 32,
-  "4xl": 40,
-  "5xl": 48,
+  md: 16, // Increased base spacing for cleaner layout
+  lg: 20,
+  xl: 24,
+  "2xl": 32,
+  "3xl": 40,
+  "4xl": 48,
+  "5xl": 64,
 };
 
 export const Radius = {
   xs: 4,
-  sm: 6,
-  md: 8,
-  lg: 12,
-  xl: 16,
-  "2xl": 20,
-  "3xl": 24,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  "2xl": 32,
+  "3xl": 40,
   full: 9999,
 };
 
 export const Typography = {
   size: {
-    xs: 11,
-    sm: 13,
-    base: 15,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    "2xl": 24,
-    "3xl": 28,
-    "4xl": 32,
-    "5xl": 36,
+    xs: 12,
+    sm: 14,
+    base: 16,
+    md: 18, // Slightly larger base
+    lg: 20,
+    xl: 24,
+    "2xl": 30,
+    "3xl": 36,
+    "4xl": 48,
+    "5xl": 60,
   },
   weight: {
     normal: "400" as const,
     medium: "500" as const,
     semibold: "600" as const,
     bold: "700" as const,
+    extrabold: "800" as const,
   },
   lineHeight: {
-    tight: 1.2,
-    normal: 1.4,
-    relaxed: 1.6,
+    tight: 1.25,
+    normal: 1.5,
+    relaxed: 1.75,
+  },
+  letterSpacing: {
+    tight: -0.5,
+    normal: 0,
+    wide: 0.5,
   },
 };
 
@@ -194,36 +261,51 @@ export const Shadows = {
   glow: {
     shadowColor: saffronOrange,
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 6,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    elevation: 10,
   },
   sm: {
-    shadowColor: "#000",
+    shadowColor: zinc[900],
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
-  },
-  md: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
+    shadowRadius: 3,
     elevation: 2,
   },
-  lg: {
-    shadowColor: "#000",
+  md: {
+    shadowColor: zinc[900],
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
     elevation: 4,
   },
-  xl: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.12,
-    shadowRadius: 16,
-    elevation: 8,
+  lg: {
+    shadowColor: zinc[900],
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 24,
+    elevation: 10,
   },
+  xl: {
+    shadowColor: zinc[900],
+    shadowOffset: { width: 0, height: 20 },
+    shadowOpacity: 0.12,
+    shadowRadius: 32,
+    elevation: 20,
+  },
+  // Inner shadow simulation for pressed states
+  inner: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 0,
+  },
+};
+
+export const Layout = {
+  screenPadding: Spacing.xl,
+  maxWidth: 1200,
+  tabBarHeight: 64,
+  headerHeight: 64,
 };
