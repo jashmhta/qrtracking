@@ -182,3 +182,18 @@
 - [x] Fix QR Card page showing "Participant not found" when viewing participant QR code (fixed by using useParticipantsDB instead of useParticipants)
 
 - [ ] Bug: Add Participant from Settings only saves locally (shows 1 Registered in Settings) but not to database (not searchable in Pilgrims list)
+
+## Multi-Device Sync & Checkpoint Updates
+- [x] Rename Checkpoint 2 from "TBD/Checkpoint 2" to "Khodiyar"
+- [x] Ensure all scans are logged to centralized database immediately
+- [x] Implement duplicate scan prevention (same participant, same checkpoint)
+- [x] Optimize real-time sync for 20+ volunteer devices
+- [x] Ensure data reflects across all devices without lag
+- [x] Test multi-device sync integrity
+
+## Offline-First & Network Resilience
+- [x] Implement offline-first scan storage with local queue
+- [x] Add network status detection and automatic sync on reconnect
+- [x] Handle network fluctuations gracefully
+- [x] Ensure scans work without internet and sync when online
+- [x] Real-time sync across 20+ volunteer devices without lag

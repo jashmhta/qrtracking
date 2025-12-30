@@ -29,7 +29,7 @@ const SCREEN_SIZES = {
 // Checkpoint data
 const CHECKPOINTS = [
   { id: 1, number: 1, description: 'Gheti', day: 1 },
-  { id: 2, number: 2, description: 'Checkpoint 2', day: 1 },
+  { id: 2, number: 2, description: 'Khodiyar', day: 1 },
   { id: 3, number: 3, description: 'Aamli', day: 1 },
 ];
 
@@ -188,7 +188,7 @@ describe('E2E User Flow Tests', () => {
 
     it('should have correct checkpoint names', () => {
       expect(CHECKPOINTS[0].description).toBe('Gheti');
-      expect(CHECKPOINTS[1].description).toBe('Checkpoint 2');
+      expect(CHECKPOINTS[1].description).toBe('Khodiyar');
       expect(CHECKPOINTS[2].description).toBe('Aamli');
     });
 

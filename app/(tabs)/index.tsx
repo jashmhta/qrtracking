@@ -38,7 +38,8 @@ import { DEFAULT_CHECKPOINTS } from "@/constants/checkpoints";
 import { Colors, Radius, Shadows, Spacing, Typography } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useResponsive } from "@/hooks/use-responsive";
-import { useParticipants, useScanLogs, useSettings } from "@/hooks/use-storage";
+import { useSettings } from "@/hooks/use-storage";
+import { useOfflineSync } from "@/hooks/use-offline-sync";
 import { scanFromGallery } from "@/services/qr-scanner";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -72,8 +73,7 @@ export default function ScannerScreen() {
   const [selectedDay, setSelectedDay] = useState<1 | 2 | "all">("all");
 
   const { settings, updateSettings } = useSettings();
-  const { participants } = useParticipants();
-  const { scanLogs, addScanLog } = useScanLogs();
+  const { participants, scanLogs, addScan, isOnline, pendingCount, forceSync } = useOfflineSync();
 
   // Animation values
   const scanButtonScale = useSharedValue(1);
@@ -143,10 +143,9 @@ export default function ScannerScreen() {
         return;
       }
 
-      const result = await addScanLog(
+      const result = await addScan(
         participant.id,
-        settings.currentCheckpoint,
-        settings.deviceId
+        settings.currentCheckpoint
       );
 
       if (result.duplicate) {
@@ -168,7 +167,7 @@ export default function ScannerScreen() {
       setIsScannerOpen(false);
       setIsProcessing(false);
     },
-    [isProcessing, participants, addScanLog, settings.currentCheckpoint, settings.deviceId]
+    [isProcessing, participants, addScan, settings.currentCheckpoint]
   );
 
   const openScanner = async () => {
@@ -226,10 +225,9 @@ export default function ScannerScreen() {
         return;
       }
 
-      const scanResult = await addScanLog(
+      const scanResult = await addScan(
         participant.id,
-        settings.currentCheckpoint,
-        settings.deviceId
+        settings.currentCheckpoint
       );
 
       if (scanResult.duplicate) {
@@ -260,7 +258,7 @@ export default function ScannerScreen() {
     }
 
     setIsProcessing(false);
-  }, [isProcessing, participants, addScanLog, settings.currentCheckpoint, settings.deviceId]);
+  }, [isProcessing, participants, addScan, settings.currentCheckpoint]);
 
   const formatTime = (timestamp: string) => {
     const date = new Date(timestamp);
