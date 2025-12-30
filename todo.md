@@ -155,3 +155,6 @@
 - [x] Check for any duplicate or missing participants
 - [x] Generate data accuracy report with any discrepancies
 - [x] Fix all discrepancies before final delivery
+
+## Current Issues
+- [x] Fix 0 pilgrims showing in app - investigate database and data loading
