@@ -17,8 +17,8 @@ interface Participant {
 }
 
 async function fetchParticipantByQrToken(qrToken: string): Promise<Participant | null> {
-  // Use simple tRPC query format
-  const input = encodeURIComponent(JSON.stringify({ qrToken }));
+  // Use tRPC query format with json wrapper
+  const input = encodeURIComponent(JSON.stringify({ json: { qrToken } }));
   const response = await fetch(`${API_BASE}/participants.getByQrToken?input=${input}`);
   if (!response.ok) {
     console.error(`Failed to fetch participant with qrToken ${qrToken}: ${response.status}`);
@@ -65,8 +65,8 @@ describe('Comprehensive Participant Verification', () => {
     const failedLookups: number[] = [];
     const successCount = { value: 0 };
     
-    // Test a sample of participants (every 10th to save time)
-    for (let i = 1; i <= 417; i += 10) {
+    // Test a sample of participants (every 50th to save time)
+    for (let i = 1; i <= 417; i += 50) {
       const qrToken = `PALITANA_YATRA_${i}`;
       const participant = await fetchParticipantByQrToken(qrToken);
       

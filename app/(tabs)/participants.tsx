@@ -52,7 +52,9 @@ export default function ParticipantsScreen() {
     
     // Apply search filter
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLowerCase().trim();
+      const isNumericQuery = /^\d+$/.test(query);
+      
       result = result.filter(
         (p) => {
           // Extract badge number from QR token (e.g., "PALITANA_YATRA_1" -> "1")
@@ -66,6 +68,25 @@ export default function ParticipantsScreen() {
           );
         }
       );
+      
+      // If searching by number, sort by badge number relevance (exact match first)
+      if (isNumericQuery) {
+        result = [...result].sort((a, b) => {
+          const aBadge = a.qrToken.split('_').pop() || '';
+          const bBadge = b.qrToken.split('_').pop() || '';
+          
+          // Exact match comes first
+          const aExact = aBadge === query;
+          const bExact = bBadge === query;
+          if (aExact && !bExact) return -1;
+          if (!aExact && bExact) return 1;
+          
+          // Then sort by badge number numerically
+          return parseInt(aBadge) - parseInt(bBadge);
+        });
+        
+        return result; // Skip other sorting for numeric searches
+      }
     }
     
     // Apply status filter
