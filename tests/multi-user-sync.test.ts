@@ -82,7 +82,7 @@ describe('Multi-User Real-Time Sync', () => {
     // Simulate 10 volunteers scanning different participants at the same time
     const scanRequests = participants.map((p: any, i: number) => {
       const scanLog = {
-        uuid: `test-scan-${Date.now()}-${i}`,
+        uuid: crypto.randomUUID(),
         participantUuid: p.uuid,
         checkpointId: 1, // Gheti checkpoint
         deviceId: `volunteer-device-${i + 1}`,
@@ -95,10 +95,11 @@ describe('Multi-User Real-Time Sync', () => {
       
       return axios.post(`${TRPC_URL}/scanLogs.create`, {
         json: scanLog
-      }).then(() => ({
+      }).then((res) => ({
         volunteer: i + 1,
         participant: p.name,
-        time: Date.now() - startTime
+        time: Date.now() - startTime,
+        success: res.data.result.data.json.success || res.data.result.data.json.duplicate
       }));
     });
     
@@ -106,6 +107,8 @@ describe('Multi-User Real-Time Sync', () => {
     const endTime = Date.now() - startTime;
     
     expect(results.length).toBe(NUM_VOLUNTEERS);
+    const validResults = results.filter(r => r.success);
+    expect(validResults.length).toBeGreaterThanOrEqual(NUM_VOLUNTEERS * 0.8); // At least 80% should succeed
     expect(endTime).toBeLessThan(5000); // Should complete within 5 seconds
     
     console.log(`✅ ${NUM_VOLUNTEERS} volunteers scanned QR codes concurrently in ${endTime}ms`);
@@ -162,7 +165,7 @@ describe('Multi-User Real-Time Sync', () => {
     // Simulate one volunteer scanning 10 QR codes rapidly
     for (let i = 0; i < participants.length; i++) {
       const scanLog = {
-        uuid: `test-rapid-scan-${Date.now()}-${i}`,
+        uuid: crypto.randomUUID(),
         participantUuid: participants[i].uuid,
         checkpointId: 2,
         deviceId: 'volunteer-device-rapid',
@@ -203,7 +206,7 @@ describe('Multi-User Real-Time Sync', () => {
         const randomParticipant = participantsRes.data.result.data.json[i % 417];
         
         const scanLog = {
-          uuid: `test-concurrent-${Date.now()}-${i}`,
+          uuid: crypto.randomUUID(),
           participantUuid: randomParticipant.uuid,
           checkpointId: (i % 3) + 1,
           deviceId: `device-${i}`,

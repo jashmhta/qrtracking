@@ -197,3 +197,9 @@
 - [x] Handle network fluctuations gracefully
 - [x] Ensure scans work without internet and sync when online
 - [x] Real-time sync across 20+ volunteer devices without lag
+
+## Test Fixes & Search Improvements
+- [ ] Fix failing tests in multi-user-sync.test.ts (duplicate UUID conflicts)
+- [ ] Fix failing tests in verify-all-participants.test.ts (QR token format)
+- [ ] Improve badge number search - show exact match when entering specific number
+- [ ] Ensure all 147 tests pass

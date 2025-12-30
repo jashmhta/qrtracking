@@ -17,22 +17,22 @@ interface Participant {
 }
 
 async function fetchParticipantByQrToken(qrToken: string): Promise<Participant | null> {
-  // tRPC batch format requires input to be wrapped in an object with "0" key
-  const input = encodeURIComponent(JSON.stringify({ "0": { qrToken } }));
-  const response = await fetch(`${API_BASE}/participants.getByQrToken?batch=1&input=${input}`);
+  // Use simple tRPC query format
+  const input = encodeURIComponent(JSON.stringify({ qrToken }));
+  const response = await fetch(`${API_BASE}/participants.getByQrToken?input=${input}`);
   if (!response.ok) {
     console.error(`Failed to fetch participant with qrToken ${qrToken}: ${response.status}`);
     return null;
   }
   const data = await response.json();
-  return data[0]?.result?.data?.json || null;
+  return data?.result?.data?.json || null;
 }
 
 async function fetchAllParticipants(): Promise<Participant[]> {
-  const response = await fetch(`${API_BASE}/participants.list?batch=1&input=%7B%7D`);
+  const response = await fetch(`${API_BASE}/participants.list`);
   if (!response.ok) throw new Error('Failed to fetch participants');
   const data = await response.json();
-  return data[0]?.result?.data?.json || [];
+  return data?.result?.data?.json || [];
 }
 
 describe('Comprehensive Participant Verification', () => {
