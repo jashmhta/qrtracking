@@ -180,3 +180,5 @@
 
 ## Bugs Found During Web Testing
 - [x] Fix QR Card page showing "Participant not found" when viewing participant QR code (fixed by using useParticipantsDB instead of useParticipants)
+
+- [ ] Bug: Add Participant from Settings only saves locally (shows 1 Registered in Settings) but not to database (not searchable in Pilgrims list)
