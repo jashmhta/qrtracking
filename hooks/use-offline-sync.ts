@@ -15,6 +15,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState, AppStateStatus, Platform } from "react-native";
 import { trpc } from "@/lib/trpc";
 import { Participant, ScanLog } from "@/types";
+import { initGoogleSheets, writeScanLogToSheet } from "@/services/google-sheets-api";
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -156,10 +157,11 @@ export function useOfflineSync() {
   ];
 
   /**
-   * Initialize device ID and load pending scans
+   * Initialize device ID, Sheets, and load pending scans
    */
   useEffect(() => {
     const init = async () => {
+      await initGoogleSheets(); // Initialize Google Sheets config
       const id = await getOrCreateDeviceId();
       setDeviceId(id);
       
@@ -328,6 +330,17 @@ export function useOfflineSync() {
           // Remove from pending queue
           const updated = pendingScans.filter((s) => s.id !== scan.id);
           await savePendingScans(updated);
+
+          // Fire-and-forget Google Sheets sync (if configured)
+          writeScanLogToSheet({
+            id: scan.id,
+            participantId: scan.participantId,
+            checkpointId: scan.checkpointId,
+            timestamp: scan.timestamp,
+            deviceId: scan.deviceId,
+            synced: true,
+          }).catch(err => console.error("[OfflineSync] Sheets sync failed:", err));
+          
           return true;
         }
         
