@@ -177,3 +177,6 @@
 - [x] Verify all participant data fields are complete and accurate
 - [x] Check QR code files exist for all 417 participants
 - [x] Generate comprehensive verification report
+
+## Bugs Found During Web Testing
+- [x] Fix QR Card page showing "Participant not found" when viewing participant QR code (fixed by using useParticipantsDB instead of useParticipants)

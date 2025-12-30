@@ -11,7 +11,7 @@ import { ThemedView } from "@/components/themed-view";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors, Radius, Spacing } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { useParticipants } from "@/hooks/use-storage";
+import { useParticipantsDB } from "@/hooks/use-database";
 import { exportSingleQRCardPDF } from "@/services/pdf-export-service";
 
 export default function QRCardScreen() {
@@ -23,7 +23,7 @@ export default function QRCardScreen() {
   const cardRef = useRef<View>(null);
   const [isExporting, setIsExporting] = useState(false);
 
-  const { participants } = useParticipants();
+  const { participants } = useParticipantsDB();
 
   const participant = useMemo(
     () => participants.find((p) => p.id === id),
