@@ -158,3 +158,9 @@
 
 ## Current Issues
 - [x] Fix 0 pilgrims showing in app - investigate database and data loading
+
+## Data Verification Tasks
+- [x] Verify total participant count is 417 (currently showing 416)
+- [x] Identify and import missing participant
+- [x] Verify QR codes from palitana_qr_codes_final.zip match database
+- [x] Cross-reference IDCardData_2.xlsx with database entries

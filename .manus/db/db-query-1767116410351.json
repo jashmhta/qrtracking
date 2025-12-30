@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO participants (uuid, name, mobile, qrToken, emergencyContact, photoUri, bloodGroup, age, createdAt, updatedAt) VALUES ('63aef0bf-0e1f-490d-9ef0-f4a461362c9d', 'Kanisha Alpesh shah', '6351438172', 'PALITANA_YATRA_116', '6351438172', NULL, NULL, 16, NOW(), NOW()) ON DUPLICATE KEY UPDATE age = 16;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2dibfHvLFmQHUiD.54bf017b6f2e --database cBbeM3pj6ToK6YNg4ZJ2Mv --execute INSERT INTO participants (uuid, name, mobile, qrToken, emergencyContact, photoUri, bloodGroup, age, createdAt, updatedAt) VALUES ('63aef0bf-0e1f-490d-9ef0-f4a461362c9d', 'Kanisha Alpesh shah', '6351438172', 'PALITANA_YATRA_116', '6351438172', NULL, NULL, 16, NOW(), NOW()) ON DUPLICATE KEY UPDATE age = 16;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1537
+}

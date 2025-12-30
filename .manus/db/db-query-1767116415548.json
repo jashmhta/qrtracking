@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as total FROM participants;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2dibfHvLFmQHUiD.54bf017b6f2e --database cBbeM3pj6ToK6YNg4ZJ2Mv --execute SELECT COUNT(*) as total FROM participants;",
+  "rows": [
+    {
+      "total": "417"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\n417\n",
+  "stderr": "",
+  "execution_time_ms": 1698
+}
